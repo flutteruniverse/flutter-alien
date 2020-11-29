@@ -1,0 +1,29 @@
+name: Analyze code
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image:  google/dart:latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: pub get
+    - name: Generate env file
+      env:
+        SPOTIFY_ID: ${{ secrets.SPOTIFY_ID }}
+        SPOTIFY_SECRET: ${{ secrets.SPOTIFY_SECRET }}
+        TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+        TWITTER_SECRET_KEY: ${{ secrets.TWITTER_SECRET_KEY }}
+        TWITTER_TOKEN: ${{ secrets.TWITTER_TOKEN }}
+        TWITTER_TOKEN_SECRET: ${{ secrets.TWITTER_TOKEN_SECRET }}
+        TELEGRAM_API_KEY: ${{ secrets.TELEGRAM_API_KEY }}
+      run: dart .tool/env_service.dart
+    - name: Lint analyze
+      run: dart analyze
+    - name: Tests
+      run: dart test
