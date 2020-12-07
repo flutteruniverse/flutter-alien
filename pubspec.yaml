@@ -11,7 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  dart_rss: ^1.1.1+1
   github: ^7.0.3
+  http: ^0.12.2
 
 dev_dependencies:
   flutter_test:
