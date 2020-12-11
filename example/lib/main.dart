@@ -27,11 +27,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final mediumFeedService = MediumService();
+  final socialService = SocialService.instance;
 
   @override
   void initState() {
-    mediumFeedService.initService();
+    socialService.init();
     super.initState();
   }
 
@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('Example get data'),
       ),
       body: FutureBuilder<MediumChannel>(
-        future: mediumFeedService.getMediumFlutterFeed(),
+        future: socialService.getMediumFeed('flutter'),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Center(

@@ -14,6 +14,7 @@ dependencies:
   dart_rss: ^1.1.1+1
   github: ^7.0.3
   http: ^0.12.2
+  xml: ^4.5.0
 
 dev_dependencies:
   flutter_test:
