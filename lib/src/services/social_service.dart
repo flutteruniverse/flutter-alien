@@ -1,15 +1,16 @@
 import 'package:dart_rss/dart_rss.dart';
-import 'package:flutter_alien/src/models/youtube_parse.dart';
-import 'package:github/github.dart';
 
+import '../config/env.dart';
 import '../models/index.dart';
+import '../models/youtube_parse.dart';
 import './http_service.dart';
+import './secret_service.dart';
 
 abstract class SocialServiceInterface {
   void init();
   Future<MediumChannel> getMediumFeed(String feedUrl);
   Future<YoutubeChannel> getYoutubeFeed(String feedUrl);
-  Future<void> getGithubReleases();
+  Future<void> getGithubReleases(String onwer, String repository);
 }
 
 class SocialService implements SocialServiceInterface {
@@ -22,19 +23,34 @@ class SocialService implements SocialServiceInterface {
   }
 
   final httpClient = HttpService();
-  GitHub github;
+  final secretService = SecretService.fromJson(environment);
 
   @override
   void init() {
     httpClient.initClient();
-    github = GitHub(auth: Authentication.anonymous());
   }
 
   @override
-  Future<void> getGithubReleases() async {
-    await github.repositories
-        .listReleases(RepositorySlug('flutter', 'engine'))
-        .toList();
+  Future<GithubRepository> getGithubReleases(
+      String owner, String repository) async {
+    final response = await httpClient
+        .getData('https://github.com/$owner/$repository/releases.atom');
+    final githubReleases = AtomFeed.parse(response.body);
+
+    return GithubRepository(
+      title: githubReleases.title,
+      link: githubReleases.links.first.href,
+      releases: githubReleases.items
+          .map(
+            (AtomItem e) => Release(
+              link: e.links.first.href,
+              updated: e.updated,
+              version: e.title,
+              content: e.content,
+            ),
+          )
+          .toList(),
+    );
   }
 
   @override
