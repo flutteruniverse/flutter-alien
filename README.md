@@ -1,33 +1,27 @@
 # Flutter Alien
 
-A package to get info about Flutter news. Create to Universo Flutter
+A package to get info about some social medias. Create to Universo Flutter
 
 ![Analyze code](https://github.com/flutteruniverse/flutter-alien/workflows/Analyze%20code/badge.svg)
+[![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://pub.dev/packages/flutter_alien)
 
 ## Features
 
-- **Get Flutter version from Github**
-- **Get Medium Flutter posts**
-- **Get publish Flutter official videos**
+- **Get versions from Github from rss**
+- **Get Medium posts from rss**
+- **Get publish Youtube videos from rss**
 
-## Build application
+## Using
 
-### Requirements
-
-- First, clone the repository with the 'clone' command, or just download the zip.
-
-```shell
-git clone https://github.com/flutteruniverse/flutter-alien.git
-```
-
-- Then, download either Android Studio or Visual Studio Code, with their respective [Flutter editor plugins](https://flutter.dev/docs/get-started/editor). For more information about Flutter installation procedure, check the [official install guide](https://flutter.dev/docs/get-started/install).
-
-- Install dependencies from pubspec.yaml by running `flutter pub get` from the project root (see [using packages documentation](https://flutter.dev/docs/development/packages-and-plugins/using-packages#adding-a-package-dependency-to-an-app) for details and how to do this in the editor).
+- Install package in pubspec.yaml
+- Import in your work file
+- Instance SocialService ```final socialService = SocialService.instance;```
+- Init SocialService ```socialService.init();```
+- Use methods to get infos
 
 ## Built with
 
 - [Flutter](https://flutter.dev/) - Beautiful native apps in record time.
-- [Android Studio](https://developer.android.com/studio/index.html/) - Tools for building apps for Android devices.
 - [Visual Studio Code](https://code.visualstudio.com/) - Code editing. Redefined.
 
 ## Author
