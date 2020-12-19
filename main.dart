@@ -9,9 +9,10 @@ void main(List<String> args) async {
       print('Last post in Dart Medium: ${value.mediumPosts.first.title}'));
   await socialService.getMediumFeed('flutter').then((value) =>
       print('Last post in Flutter Medium: ${value.mediumPosts.first.title}'));
-  await socialService.getYoutubeFeed('UCwXdFgeE9KYzlDdR7TG9cMw').then((value) =>
-      print(
-          'Last post in Flutter Youtube channel: ${value.youtubePosts.first.title}'));
+  await socialService.getYoutubeFeed('UCwXdFgeE9KYzlDdR7TG9cMw').then(
+        (value) => print(
+            'Last post in Flutter Youtube: ${value.youtubePosts.first.title}'),
+      );
   await socialService.getGithubReleases('flutter', 'devtools').then((value) =>
       print('Last Dart Devtools version: ${value.releases.first.version}'));
   await socialService.getGithubReleases('flutter', 'flutter').then((value) =>

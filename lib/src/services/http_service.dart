@@ -1,21 +1,26 @@
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
+/// Http service interface
 abstract class HttpInterface {
+  /// Init services and others things to http service works
   void initClient();
+
+  /// Get data from [link] using http client
   Future<http.Response> getData(String link);
 }
 
+/// Http service to manage http client
 class HttpService implements HttpInterface {
-  Client httpClient;
+  Client _httpClient;
 
   @override
   void initClient() {
-    httpClient = http.Client();
+    _httpClient = http.Client();
   }
 
   @override
   Future<http.Response> getData(String link) async {
-    return httpClient.get(link);
+    return _httpClient.get(link);
   }
 }

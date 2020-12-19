@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_alien/flutter_alien.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(MyApp());
@@ -49,26 +50,26 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
-                    snapshot.data.title,
-                  ),
-                  Text(
-                    snapshot.data.description,
+                  ListTile(
+                    title: Text(snapshot.data.title),
+                    subtitle: Text(snapshot.data.description),
+                    leading: Image.network(
+                      snapshot.data.imageLink,
+                      width: 40,
+                      height: 40,
+                    ),
                   ),
                   Expanded(
                     child: ListView.builder(
                       itemCount: snapshot.data.mediumPosts.length,
                       itemBuilder: (context, index) => Card(
                         margin: const EdgeInsets.all(8.0),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              Text(snapshot.data.mediumPosts[index].title),
-                              Text(snapshot.data.mediumPosts[index].link),
+                        child: ListTile(
+                          title: Text(snapshot.data.mediumPosts[index].title),
+                          subtitle:
                               Text(snapshot.data.mediumPosts[index].pubDate),
-                            ],
-                          ),
+                          onTap: () =>
+                              launch(snapshot.data.mediumPosts[index].link),
                         ),
                       ),
                     ),
@@ -77,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             );
           }
-          return Text('Loading data');
+          return Center(child: CircularProgressIndicator());
         },
       ),
     );

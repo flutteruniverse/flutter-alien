@@ -19,5 +19,3 @@ jobs:
       run: pub get
     - name: Code lint analyze
       run: dart analyze
-    - name: Tests
-      run: dart test
