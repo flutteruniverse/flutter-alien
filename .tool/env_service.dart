@@ -7,8 +7,7 @@ Future<void> main() async {
   };
 
   final filename = 'lib/src/config/env.dart';
-  await File(filename).writeAsString(
-      '/// Global enviroment variables\n
+  await File(filename).writeAsString('''/// Global enviroment variables\n
       const Map<String, String> environment =
-      <String, String>${json.encode(config)};');
+      <String, String>${json.encode(config)};''');
 }
