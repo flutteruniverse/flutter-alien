@@ -8,7 +8,7 @@
 .buildlog/
 .history
 .svn/
-.vscode/launch.json
+.vscode/*
 env.dart
 
 # IntelliJ related
