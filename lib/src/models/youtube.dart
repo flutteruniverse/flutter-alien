@@ -20,7 +20,7 @@ class YoutubeChannel {
 /// Youtube post model
 class YoutubePost {
   /// Publication date of Youtube video post
-  final String pubDate;
+  final DateTime pubDate;
 
   /// Title of Youtube video post
   final String title;

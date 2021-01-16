@@ -20,7 +20,7 @@ class GithubRepository {
 /// Release model
 class Release {
   /// Updated date of Release
-  final String updated;
+  final DateTime updated;
 
   /// Version number of Release
   final String version;

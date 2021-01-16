@@ -24,7 +24,7 @@ class MediumChannel {
 /// Medium post model
 class MediumPost {
   /// Publication date of Medium article post
-  final String pubDate;
+  final DateTime pubDate;
 
   /// Title of Medium video post
   final String title;

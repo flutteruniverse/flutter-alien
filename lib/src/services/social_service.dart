@@ -1,7 +1,8 @@
 import 'package:dart_rss/dart_rss.dart';
+import 'package:intl/intl.dart';
+import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 
 import '../models/index.dart';
-import '../models/youtube_parse.dart';
 import './http_service.dart';
 
 /// Social service interface
@@ -36,7 +37,11 @@ class SocialService implements SocialServiceInterface {
     return _instance;
   }
 
+  final _dateFormatGithub = DateFormat(r'''yyyy-dd-MMThh:mm:ssZ''');
+  final _dateFormatMedium = DateFormat(r'''EEE, dd MMM yyyy hh:mm:ss Z''');
+  final _dateFormatYoutube = DateFormat(r'''yyyy-dd-MMThh:mm:ss''');
   final _httpService = HttpService();
+  final _youtubeApi = YoutubeExplode();
 
   @override
   void init() {
@@ -57,7 +62,7 @@ class SocialService implements SocialServiceInterface {
           .map(
             (e) => Release(
               link: e.links.first.href,
-              updated: e.updated,
+              updated: _dateFormatGithub.parse(e.updated),
               version: e.title,
               content: e.content,
             ),
@@ -80,7 +85,7 @@ class SocialService implements SocialServiceInterface {
           .map<MediumPost>(
             (e) => MediumPost(
               link: e.link,
-              pubDate: e.pubDate,
+              pubDate: _dateFormatMedium.parse(e.pubDate),
               title: e.title,
             ),
           )
@@ -90,17 +95,17 @@ class SocialService implements SocialServiceInterface {
 
   @override
   Future<YoutubeChannel> getYoutubeFeed(String channelId) async {
-    final response = await _httpService.getData(
-        'https://www.youtube.com/feeds/videos.xml?channel_id=$channelId');
-    final youtubeFeed = YoutubeFeed.parse(response.body);
+    final channel = await _youtubeApi.channels.get(channelId);
+    final videos =
+        await _youtubeApi.channels.getUploads(channelId).take(10).toList();
     return YoutubeChannel(
-      title: youtubeFeed.title,
-      link: youtubeFeed.link,
-      youtubePosts: youtubeFeed.videos
+      title: channel.title,
+      link: channel.url,
+      youtubePosts: videos
           .map<YoutubePost>(
             (e) => YoutubePost(
-              link: e.link,
-              pubDate: e.pubDate,
+              link: e.url,
+              pubDate: _dateFormatYoutube.parse(e.uploadDate.toIso8601String()),
               title: e.title,
             ),
           )
