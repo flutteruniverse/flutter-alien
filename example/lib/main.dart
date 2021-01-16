@@ -78,7 +78,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             );
           }
-          return Center(child: CircularProgressIndicator());
+          return snapshot.hasError
+              ? Text('Error: ${snapshot.error.toString()}')
+              : Center(child: CircularProgressIndicator());
         },
       ),
     );
