@@ -1,3 +1,10 @@
+# 0.1.2
+
+* Update metadata
+* Add web and Android config files to example
+* Improve Youtube source data
+* Change date from string to DateTime type
+
 # 0.1.1
 
 * Minor fix
