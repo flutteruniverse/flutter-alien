@@ -93,7 +93,7 @@ class YoutubeVideo {
       title: findElementOrNull(element, 'title')?.text,
       description: findElementOrNull(element, 'description')?.text,
       link: findElementOrNull(element, 'link')?.getAttribute('href'),
-      pubDate: findElementOrNull(element, 'pubDate')?.text,
+      pubDate: findElementOrNull(element, 'published')?.text,
       author: findElementOrNull(element, 'author')?.text,
       media: Media.parse(element),
     );
