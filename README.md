@@ -4,6 +4,7 @@ A package to get info about some social medias. Create to Universo Flutter
 
 ![Analyze code](https://github.com/flutteruniverse/flutter-alien/workflows/Analyze%20code/badge.svg)
 [![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://pub.dev/packages/flutter_alien)
+[![Paypal donate](https://img.shields.io/badge/paypal-donate-blue)](https://paypal.me/deandreamatias)
 
 ## Features
 
@@ -26,7 +27,7 @@ A package to get info about some social medias. Create to Universo Flutter
 
 ## Author
 
-- **Matias de Andrea** - Mobile developer and UI/UX designer: [Website](https://deandreamatias.com), [GitHub](https://github.com/deandreamatias) & [Twitter](https://twitter.com/deandreamatias).
+- **Matias de Andrea** - Mobile developer and UI/UX designer: [Website](https://deandreamatias.com), [GitHub](https://github.com/deandreamatias) and [Twitter](https://twitter.com/deandreamatias).
 
 ## Contributing
 
