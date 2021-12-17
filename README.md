@@ -1,16 +1,19 @@
 # Flutter Alien
 
-A package to get info about some social medias. Create to Universo Flutter
-
 ![Analyze code](https://github.com/flutteruniverse/flutter-alien/workflows/Analyze%20code/badge.svg)
 [![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://pub.dev/packages/flutter_alien)
 [![Paypal donate](https://img.shields.io/badge/paypal-donate-blue)](https://paypal.me/deandreamatias)
+
+## About the project
+
+A package to get info about some social medias. Create to [Universo Flutter](https://anchor.fm/universoflutter)
 
 ## Features
 
 - **Get versions from Github from rss**
 - **Get Medium posts from rss**
 - **Get publish Youtube videos from rss**
+- **Roadmap in [public Trello](https://trello.com/b/eKsVAvyv)**
 
 ## Using
 
@@ -22,12 +25,12 @@ A package to get info about some social medias. Create to Universo Flutter
 
 ## Built with
 
-- [Flutter](https://flutter.dev/) - Beautiful native apps in record time.
+- [Flutter](https://flutter.dev/) - Build apps for any screen.
 - [Visual Studio Code](https://code.visualstudio.com/) - Code editing. Redefined.
 
 ## Author
 
-- **Matias de Andrea** - Mobile developer and UI/UX designer: [Website](https://deandreamatias.com), [GitHub](https://github.com/deandreamatias) and [Twitter](https://twitter.com/deandreamatias).
+- **Matias de Andrea** - Mobile developer: [Website](https://deandreamatias.com), [GitHub](https://github.com/deandreamatias) and [Twitter](https://twitter.com/deandreamatias).
 
 ## Contributing
 
