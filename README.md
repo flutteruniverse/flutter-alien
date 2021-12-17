@@ -23,9 +23,17 @@ A package to get info about some social medias. Create to [Universo Flutter](htt
 - Init SocialService ```socialService.init();```
 - Use methods to get infos
 
+## Build and run
+
+### Requirements
+
+1. Clone repository with 'git clone' command or just download the zip. `git clone git@github.com:flutteruniverse/flutter-planet.git`
+2. Then, download either Android Studio or Visual Studio Code. For more information about Dart installation procedure, check the [official install guide](https://dart.dev/get-dart).
+3. Install dependencies from pubspec.yaml by running `dart pub get` from the project root.
+
 ## Built with
 
-- [Flutter](https://flutter.dev/) - Build apps for any screen.
+- [Dart](https://dart.dev/) - Dart is a client-optimized language for fast apps on any platform.
 - [Visual Studio Code](https://code.visualstudio.com/) - Code editing. Redefined.
 
 ## Author
