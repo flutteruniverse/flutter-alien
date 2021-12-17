@@ -31,11 +31,6 @@ A package to get info about some social medias. Create to [Universo Flutter](htt
 2. Then, download either Android Studio or Visual Studio Code. For more information about Dart installation procedure, check the [official install guide](https://dart.dev/get-dart).
 3. Install dependencies from pubspec.yaml by running `dart pub get` from the project root.
 
-## Built with
-
-- [Dart](https://dart.dev/) - Dart is a client-optimized language for fast apps on any platform.
-- [Visual Studio Code](https://code.visualstudio.com/) - Code editing. Redefined.
-
 ## Author
 
 - **Matias de Andrea** - Mobile developer: [Website](https://deandreamatias.com), [GitHub](https://github.com/deandreamatias) and [Twitter](https://twitter.com/deandreamatias).
