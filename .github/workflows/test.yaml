@@ -19,3 +19,21 @@ jobs:
       run: pub get
     - name: Code lint analyze
       run: dart analyze
+    - name: Analyze publish package
+      run: dart pub publish --dry-run
+    - name: Setup credentials
+      if: ${{ github.ref_type == 'tag' && contains(github.ref, '.') }}
+      run: | 
+        mkdir -p ~/.pub-cache
+        cat <<EOF > ~/.pub-cache/credentials.json
+        {
+          "accessToken":"${{ secrets.OAUTH_ACCESS_TOKEN }}",
+          "refreshToken":"${{ secrets.OAUTH_REFRESH_TOKEN }}",
+          "tokenEndpoint":"https://accounts.google.com/o/oauth2/token",
+          "scopes": [ "openid", "https://www.googleapis.com/auth/userinfo.email" ],
+          "expiration": 1570721159347
+        }
+        EOF
+    - name: Publish package
+      if: ${{ github.ref_type == 'tag' && startsWith(github.ref, '.') }}
+      run: dart pub publish
