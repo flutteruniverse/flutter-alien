@@ -2,10 +2,13 @@ name: Analyze code
 
 on:
   push:
+    tags:
+      - '*'
   pull_request:
 
 jobs:
   build:
+    name: Test package
     runs-on: ubuntu-latest
     container:
       image:  google/dart:latest
@@ -19,21 +22,29 @@ jobs:
       run: pub get
     - name: Code lint analyze
       run: dart analyze
-    - name: Analyze publish package
-      run: dart pub publish --dry-run
-    - name: Setup credentials
-      if: ${{ github.ref_type == 'tag' && contains(github.ref, '.') }}
-      run: | 
-        mkdir -p ~/.pub-cache
-        cat <<EOF > ~/.pub-cache/credentials.json
-        {
-          "accessToken":"${{ secrets.OAUTH_ACCESS_TOKEN }}",
-          "refreshToken":"${{ secrets.OAUTH_REFRESH_TOKEN }}",
-          "tokenEndpoint":"https://accounts.google.com/o/oauth2/token",
-          "scopes": [ "openid", "https://www.googleapis.com/auth/userinfo.email" ],
-          "expiration": 1570721159347
-        }
-        EOF
+
+  deployment:
+    if: ${{ github.ref_type == 'tag' }}
+    needs: build
+    name: Deploy package
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Configure enviroment
+      uses: actions/checkout@v3
+    - name: Download flutter
+      uses: subosito/flutter-action@v2.4.0
+      with:
+        channel: 'stable'
+    - name: Setup pub credentials
+      shell: bash
+      env:
+        PUB_DEV_PUBLISH_ACCESS_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_ACCESS_TOKEN }}
+        PUB_DEV_PUBLISH_REFRESH_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_REFRESH_TOKEN }}
+      run: |
+        sh ./tools/pub_login.sh
+    - name: Check publish warnings
+      run: pub publish --dry-run
     - name: Publish package
-      if: ${{ github.ref_type == 'tag' && startsWith(github.ref, '.') }}
-      run: dart pub publish
+      run: pub publish -f
+
