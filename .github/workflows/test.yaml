@@ -22,7 +22,7 @@ jobs:
     - name: Install dependencies
       run: pub get
     - name: Code lint analyze
-      run: dart analyze
+      run: dart analyze .
 
   deployment:
     if: ${{ github.ref_type == 'tag' }}
