@@ -2,6 +2,7 @@ name: Analyze code
 
 on:
   push:
+    branches: [main, develop]
     tags:
       - '*'
   pull_request:
@@ -11,7 +12,7 @@ jobs:
     name: Test package
     runs-on: ubuntu-latest
     container:
-      image:  google/dart:2.8.0
+      image:  google/dart:2.8
     steps:
     - name: Configure enviroment
       uses: actions/checkout@v3
