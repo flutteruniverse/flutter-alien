@@ -3,10 +3,12 @@ import 'package:flutter_alien/flutter_alien.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,13 +17,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+  const MyHomePage({Key key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -40,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Example get data'),
+        title: const Text('Example get data'),
       ),
       body: FutureBuilder<MediumChannel>(
         future: socialService.getMediumFeed('flutter'),
@@ -66,10 +68,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         margin: const EdgeInsets.all(8.0),
                         child: ListTile(
                           title: Text(snapshot.data.mediumPosts[index].title),
-                          subtitle:
-                              Text(snapshot.data.mediumPosts[index].pubDate),
-                          onTap: () =>
-                              launch(snapshot.data.mediumPosts[index].link),
+                          subtitle: Text(snapshot
+                              .data.mediumPosts[index].pubDate
+                              .toString()),
+                          onTap: () => launchUrl(
+                              Uri.parse(snapshot.data.mediumPosts[index].link)),
                         ),
                       ),
                     ),
@@ -80,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
           }
           return snapshot.hasError
               ? Text('Error: ${snapshot.error.toString()}')
-              : Center(child: CircularProgressIndicator());
+              : const Center(child: CircularProgressIndicator());
         },
       ),
     );

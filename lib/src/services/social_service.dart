@@ -2,8 +2,8 @@ import 'package:dart_rss/dart_rss.dart';
 import 'package:intl/intl.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 
-import '../models/index.dart';
 import './http_service.dart';
+import '../models/index.dart';
 
 /// Social service interface
 abstract class SocialServiceInterface {

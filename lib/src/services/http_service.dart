@@ -21,6 +21,6 @@ class HttpService implements HttpInterface {
 
   @override
   Future<http.Response> getData(String link) async {
-    return _httpClient.get(link);
+    return _httpClient.get(Uri.parse(link));
   }
 }
