@@ -23,6 +23,8 @@ jobs:
       run: flutter pub get
     - name: Code lint analyze
       run: flutter analyze
+    - name: Check publish warnings
+      run: dart pub publish --dry-run
 
   deployment:
     if: ${{ github.ref_type == 'tag' }}
@@ -44,8 +46,6 @@ jobs:
         PUB_DEV_PUBLISH_REFRESH_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_REFRESH_TOKEN }}
       run: |
         sh ./tools/pub_login.sh
-    - name: Check publish warnings
-      run: dart pub publish --dry-run
     - name: Publish package
       run: dart pub publish -f
 
