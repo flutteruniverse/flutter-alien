@@ -47,5 +47,5 @@ jobs:
       run: |
         sh ./tool/pub_login.sh
     - name: Publish package
-      run: dart pub publish -f
+      run: dart pub publish -f -v
 
