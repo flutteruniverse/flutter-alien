@@ -18,7 +18,7 @@ jobs:
     - name: Flutter action
       uses: subosito/flutter-action@v2
       with:
-        version: 2.10.5
+        flutter-version: 2.10.5
     - name: Install dependencies
       run: flutter pub get
     - name: Code lint analyze
@@ -36,7 +36,7 @@ jobs:
     - name: Flutter action
       uses: subosito/flutter-action@v2
       with:
-        version: 2.10.5
+        flutter-version: 2.10.5
     - name: Setup pub credentials
       shell: bash
       env:
@@ -45,7 +45,7 @@ jobs:
       run: |
         sh ./tools/pub_login.sh
     - name: Check publish warnings
-      run: flutter dart pub publish --dry-run
+      run: dart pub publish --dry-run
     - name: Publish package
-      run: flutter dart pub publish -f
+      run: dart pub publish -f
 
