@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: Test package
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - name: Configure enviroment
@@ -28,7 +28,7 @@ jobs:
     if: ${{ github.ref_type == 'tag' }}
     needs: build
     name: Deploy package
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - name: Configure enviroment
