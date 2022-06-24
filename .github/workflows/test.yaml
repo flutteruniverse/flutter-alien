@@ -45,7 +45,7 @@ jobs:
       run: |
         sh ./tools/pub_login.sh
     - name: Check publish warnings
-      run: pub publish --dry-run
+      run: flutter dart pub publish --dry-run
     - name: Publish package
-      run: pub publish -f
+      run: flutter dart pub publish -f
 
